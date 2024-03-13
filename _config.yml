@@ -54,7 +54,7 @@ google_analytics:
   id: # fill in your Google Analytics ID
 
 goatcounter:
-  id: # fill in your Goatcounter ID
+  id: bayodev
 
 # Prefer color scheme setting.
 #
@@ -147,6 +147,9 @@ collections:
   tabs:
     output: true
     sort_by: order
+  # tools:
+  #   output: true
+  #   sort_by: order
 
 defaults:
   - scope:
