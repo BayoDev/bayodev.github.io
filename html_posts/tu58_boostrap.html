@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="pandoc" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+  <meta name="dcterms.date" content="2024-09-03" />
+  <title>Bootstrap tu58 tapes on a PDP-11</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+  <style>
+      body{
+          padding-top: 1%;
+      }
+
+      #TOC li {
+          list-style: square;
+      }
+
+      #TOC ul {
+          padding-left: 1.3em; 
+      }
+
+      #TOC {
+          background-color: rgba(0, 0, 0, 0.1);
+      }
+
+      pre {
+          padding: 1%;
+          background-color: rgba(0, 0, 0, 0.1);
+      }
+  </style>
+</head>
+<body>
+<a id="top"></a>
+<header>
+    <hr>
+    <div align="center">
+        <span align="center"><a href="../index.html">Home</a> / <a href="#bottom">Bottom</a></span>   
+    </div>
+    <hr>
+</header>
+<header id="title-block-header">
+<h1 class="title">Bootstrap tu58 tapes on a PDP-11</h1>
+<p class="date">09/03/2024</p>
+</header>
+<nav id="TOC" role="doc-toc">
+<ul>
+<li><a href="#the-importance-of-tu58-images"
+id="toc-the-importance-of-tu58-images">The importance of tu58
+images</a></li>
+<li><a href="#bootstrap-code" id="toc-bootstrap-code">Bootstrap code</a>
+<ul>
+<li><a href="#the-tu58-protocol" id="toc-the-tu58-protocol">The tu58
+protocol</a></li>
+<li><a href="#my-code" id="toc-my-code">My code</a></li>
+<li><a href="#beware-of-the-registers"
+id="toc-beware-of-the-registers">Beware of the registers!</a></li>
+</ul></li>
+<li><a href="#type-in" id="toc-type-in">ODT commands, at last</a></li>
+<li><a href="#a-digression-on-where-to-find-bootable-tu58-images"
+id="toc-a-digression-on-where-to-find-bootable-tu58-images">A digression
+on where to find bootable tu58 images</a></li>
+<li><a href="#references" id="toc-references">References</a></li>
+</ul>
+</nav>
+<p>This article is meant as a way to aggregate some information that I
+had to gather in order to write a bootloader for tu58 tapes that is
+small enough to be typed in ODT.</p>
+<blockquote>
+<p>If you just want the code to type into ODT click <a
+href="#type-in">here</a></p>
+</blockquote>
+<h2 id="the-importance-of-tu58-images">The importance of tu58
+images</h2>
+<p>If you want to get a basic PDP-11 system up and running, the simplest
+and most affordable way to get mass-storage is by emulating a tu58 tape.
+There are two reasons for this, the first is that the tu58 just uses a
+serial connection, so no special board is required, the second one is
+that it can easily be emulated.</p>
+<p>Here are some of the main emulators online:</p>
+<ul>
+<li><a
+href="https://github.com/AK6DN/tu58em">https://github.com/AK6DN/tu58em</a></li>
+<li><a
+href="https://github.com/j-hoppe/tu58fs/releases">https://github.com/j-hoppe/tu58fs/releases</a></li>
+</ul>
+<h2 id="bootstrap-code">Bootstrap code</h2>
+<p>If you search for tu58 boostrap codes on the internet you’ll most
+likely find these</p>
+<ul>
+<li><a
+href="https://web.archive.org/web/20240119034125/http://www.diane-neisius.de/pdp11/index_E.html#tape">Diane’s
+pdp-11 page code</a></li>
+<li><a
+href="https://forum.vcfed.org/index.php?threads/boot-a-pdp-11-03-from-an-emulated-tu58.42283/post-512407">Bootrstrap
+code from tu58 user’s manual</a></li>
+</ul>
+<p>Suprisingly the code from the user’s manual fail the booting process
+with many tu58 tapes, while diane’s one is much more reliable.</p>
+<p>While I was troubleshooting my PDP-11, as suggested by a user in the
+vcfed forum where I was asking for some guidance<a href="#fn1"
+class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, I
+decided to write my version of the bootstrap to get a better
+understanding of where the failure was happening.</p>
+<h3 id="the-tu58-protocol">The tu58 protocol</h3>
+<p>The good thing about writing the bootstrap code is that you dont
+really need to use any complicated protocol message for the tu58 but you
+can simply use the special purpose <em>BOOT</em> command.</p>
+<p>When this command is issued the tu58 will send the first 512 bytes of
+the tape without any type of acknowledgement or special protocol
+conventions. In a bootable tape these 512 bytes will contain the code
+that will carry on the booting process. <em>[From section 3-2 of TU58
+user’s guide<a href="#fn2" class="footnote-ref" id="fnref2"
+role="doc-noteref"><sup>2</sup></a>]</em></p>
+<h3 id="my-code">My code</h3>
+<p>This is what I came up with the help of <span class="citation"
+data-cites="daver2">@daver2</span> and <span class="citation"
+data-cites="Hunta">@Hunta</span> from the vcfed forum<sup><a
+href="#bottom">1</a></sup></p>
+<pre><code>; Configuration parameters
+
+tuAddr=176500
+codeStart=1000
+
+.ASECT
+.=codeStart
+
+clr r0                  
+mov #tuAddr,r1
+wait2:
+    tstb 04(r1)
+    bpl wait2
+mov #04,6(r1)               ; Init command
+wait3:
+    tstb 04(r1)
+    bpl wait3
+mov #10,6(r1)               ; Boot command
+wait4:  
+    tstb 04(r1)
+    bpl wait4
+mov #00,6(r1)               ; Drive number
+
+mov #00,r2                   ; mem pointer
+mov #1000,r3                 ; Loop counter
+dataLoop:
+    checkRCX:
+        TSTB (r1)
+        bpl checkRCX
+    movb 02(r1),(r2)+
+    sob r3,dataLoop
+clr pc</code></pre>
+<p>The code is really simple, it just sends three commands over the
+serial line where the tu58 is located (176500 is the default address).
+The first command is the INIT command, the second one is the BOOT
+command and the third one indicates the drive number (0 in this
+case).</p>
+<p>After the three commands are sent, the tu58 will start sending the
+512 bytes of data that <em>dataLoop</em> read and stores in memory
+starting from address 0. After the 512 are read, the execution is passed
+to the newly received code.</p>
+<h3 id="beware-of-the-registers">Beware of the registers!</h3>
+<p>What prevented my code from working for a long time and what (I
+think) prevents the tu58 user’s guide code to work is the lack of
+support for what seems like an ‘undocumented’ feature of some tu58
+tapes. Some tapes such as XXDP ones, requires R0 to contain the drive
+number and R1 to contain the address of the CSR for the serial
+connection to the tu58 (by default 176500). I was able to find out about
+this, and fix my code, thanks to a disassembly of a XXDP tape available
+<a
+href="https://web.archive.org/web/20190612155849/http://web.frainresearch.org:8080/projects/mypdp/xxdpdd.php">here</a>
+that was of invaluable help.</p>
+<h2 id="type-in">ODT commands, at last</h2>
+<p>This can be easily sent by using the “Send file” function of “Tera
+Term”. Or typed by hand.</p>
+<pre><code>1000/005000
+1002/012701
+1004/176500
+1006/105761
+1010/000004
+1012/100375
+1014/012761
+1016/000004
+1020/000006
+1022/105761
+1024/000004
+1026/100375
+1030/012761
+1032/000010
+1034/000006
+1036/105761
+1040/000004
+1042/100375
+1044/012761
+1046/000000
+1050/000006
+1052/012702
+1054/000000
+1056/012703
+1060/001000
+1062/105711
+1064/100376
+1066/116122
+1070/000002
+1072/077305
+1074/005007
+1000G</code></pre>
+<h2 id="a-digression-on-where-to-find-bootable-tu58-images">A digression
+on where to find bootable tu58 images</h2>
+<p>I decided to add this section since I had some trouble finding
+bootable tu58 tapes online, the only one I was able to find comes from a
+release of one of the emulators, tu58fs <a
+href="https://github.com/j-hoppe/tu58fs/releases">here</a>. In this
+release you can find some demo images such as rt11v57.tu58 that are
+bootable with any emulator and works with my boostrap code.</p>
+<h2 id="references">References</h2>
+<aside id="footnotes" class="footnotes footnotes-end-of-document"
+role="doc-endnotes">
+<hr />
+<ol>
+<li id="fn1"><p><a
+href="https://forum.vcfed.org/index.php?threads/problems-booting-pdp-11-through-tu58-emulator.1245931/">My
+thread on the vcfed forum</a><a href="#fnref1" class="footnote-back"
+role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p><a
+href="https://web.archive.org/web/20240309145426/https://bitsavers.org/pdf/dec/dectape/tu58/EK-0TU58-UG-004_TU58_DECtape_II_Users_Guide_Dec83.pdf">TU58
+user’s guide</a><a href="#fnref2" class="footnote-back"
+role="doc-backlink">↩︎</a></p></li>
+</ol>
+</aside>
+<footer>
+    <hr>
+    <div align="center">
+        <span align="center"><a href="../index.html">Home</a> / <a href="#top">Top</a></span>   
+    </div>
+    <hr>
+</footer>
+<a id="bottom"></a>
+</body>
+</html>
